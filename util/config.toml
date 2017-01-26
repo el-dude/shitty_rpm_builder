@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+#
+### Shitty RPM Builder Configuration
+# This config is used by shitty_rpm_builder.py
+# which will compile the source code you supply
+# and package it into an RPM for you.
+###
+
+title = "Shitty RPM Builder Config"
+
+[source]
+  url = "" # The source code to download
+  chk_sum = "" # The checksum for the source code your downloading
+
+[package]
+  name = "" # name of the software you're packaging
+  version = "" # Version number of package
+  destination = "/opt/" # the destination path that the bianaries will be installed
+  summary = "" # The summary of the software package
+  license = "GPL" # the Software license. exp. GPL,MIT,BSD,etc...
