@@ -177,6 +177,9 @@ def cleanup_after():
   * move the rpm into RPMS/
   """
   rpm_dir     = os.getcwd()+"/RPMS/"
+  if not os.path.isdir(rpm_dir):
+    logger.info(os.makedirs(rpm_dir))
+
   rpm_file    = conf_package_name+"-"+conf_package_version+'-1.x86_64.rpm'
   source_path = os.getcwd()+"/"+rpm_file
   destination = rpm_dir+rpm_file

@@ -22,7 +22,6 @@ Downloads tarbals from source url and checks it's sha512 checksum. It then unpac
 * Make sure all requirements are installed, via `yum, dnf,`& `pip` follow instructions for `fpm` & `pytoml` on their README's
 
 ```
-#!bash
 
 ../shitty_rpm_builder/
 ├── README.md
