@@ -9,12 +9,12 @@
 title = "Shitty RPM Builder Config"
 
 [source]
-  url = "" # The source code to download
-  chk_sum = "" # The checksum for the source code your downloading
+  url = "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz" # The source code to download
+  chk_sum = "80d9f3aaf1d60b9b2f4a6fb8866713ce1e201a3778ef9e16f1bedb7ccda35aefdd7babffbed1560263bd95ddcfe948f0c9967b5077a89db8b2e18cacc7323975" # The checksum for the source code your downloading
 
 [package]
-  name = "" # name of the software you're packaging
-  version = "" # Version number of package
-  destination = "/opt/" # the destination path that the bianaries will be installed
-  summary = "" # The summary of the software package
+  name = "ruby" # name of the software you're packaging
+  version = "2.3.3" # Version number of package
+  destination = "/opt/rubies/ruby-2.3.3" # the destination path that the bianaries will be installed
+  summary = "Ruby is the interpreted scripting language for quick and easy object-oriented programming." # The summary of the software package
   license = "GPL" # the Software license. exp. GPL,MIT,BSD,etc...
