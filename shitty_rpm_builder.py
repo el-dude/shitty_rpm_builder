@@ -25,6 +25,19 @@ import urllib2
 import tarfile
 import hashlib
 import pytoml as toml
+import argparse
+
+# This is a shitty thing to turn on and off pgp signing
+# requires that you have the key already and uses .rpmmacros
+parser = argparse.ArgumentParser(description='Turn on gpg key signing')
+parser.add_argument(
+  '-s',
+  '--sign',
+  help='Turn on pgp signing of the rpm',
+  dest='app_sign',
+  action='store'
+)
+args = parser.parse_args()
 
 ###
 # For the record this is terrible...
@@ -154,6 +167,8 @@ def build_rpm(build_dir):
     'dir',
     '-t',
     'rpm',
+    '--rpm-rpmbuild-define',
+    '--rpm-sign',
     '--name', conf_package_name,
     '-v', conf_package_version,
     '--prefix', conf_package_destination,
@@ -161,6 +176,12 @@ def build_rpm(build_dir):
   ]
 
   os.chdir(c_path)
+  if args.app_sign:
+    logger.info("signing the package with gpg keys")
+  else:
+    logger.info("popping off the signature bits no gpg signing needed")
+    cmds[0].pop(5)
+    cmds[0].pop(5)
   for cmd in cmds:
     logger.info(cmd)
     logger.info(subprocess.check_output(cmd))
