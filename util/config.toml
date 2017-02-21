@@ -13,8 +13,9 @@ title = "Shitty RPM Builder Config"
   chk_sum = "80d9f3aaf1d60b9b2f4a6fb8866713ce1e201a3778ef9e16f1bedb7ccda35aefdd7babffbed1560263bd95ddcfe948f0c9967b5077a89db8b2e18cacc7323975" # The checksum for the source code your downloading
 
 [package]
-  name = "ruby" # name of the software you're packaging
+  project = "plm"   # Project, Company, etc... to prepend to the name of the final RPM to not conflict with actual upstream or default RPM's
+  name = "ruby"     # name of the software you're packaging
   version = "2.3.3" # Version number of package
   destination = "/opt/rubies/ruby-2.3.3" # the destination path that the bianaries will be installed
   summary = "Ruby is the interpreted scripting language for quick and easy object-oriented programming." # The summary of the software package
-  license = "GPL" # the Software license. exp. GPL,MIT,BSD,etc...
+  license = "GPL"   # the Software license. exp. GPL,MIT,BSD,etc...
