@@ -51,6 +51,7 @@ with open(config, 'rb') as fin:
 conf_source_url           = str(config_obj["source"]["url"])
 conf_source_chk_sum       = str(config_obj["source"]["chk_sum"])
 conf_package_project      = str(config_obj["package"]["project"])
+conf_package_proj_ver     = str(config_obj["package"]["proj_ver"])
 conf_package_name         = str(config_obj["package"]["name"])
 conf_package_version      = str(config_obj["package"]["version"])
 conf_package_destination  = str(config_obj["package"]["destination"])
@@ -170,7 +171,7 @@ def build_rpm(build_dir):
     'rpm',
     '--rpm-rpmbuild-define',
     '--rpm-sign',
-    '--name', conf_package_project+"-"+conf_package_name,
+    '--name', conf_package_project+"-"+conf_package_name+"_"+conf_package_proj_ver,
     '-v', conf_package_version,
     '--prefix', conf_package_destination,
     '.']
@@ -202,7 +203,7 @@ def cleanup_after():
   if not os.path.isdir(rpm_dir):
     logger.info(os.makedirs(rpm_dir))
 
-  rpm_file    = conf_package_project+"-"+conf_package_name+"-"+conf_package_version+'-1.x86_64.rpm'
+  rpm_file    = conf_package_project+"-"+conf_package_name+"_"+conf_package_proj_ver+"-"+conf_package_version+'-1.x86_64.rpm'
   source_path = os.getcwd()+"/"+rpm_file
   destination = rpm_dir+rpm_file
   src_dir     = os.getcwd()+"/SRC"
