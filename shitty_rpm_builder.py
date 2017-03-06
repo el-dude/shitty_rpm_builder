@@ -25,6 +25,19 @@ import urllib2
 import tarfile
 import hashlib
 import pytoml as toml
+import argparse
+
+# This is a shitty thing to turn on and off pgp signing
+# requires that you have the key already and uses .rpmmacros
+parser = argparse.ArgumentParser(description='Turn on gpg key signing')
+parser.add_argument(
+  '-s',
+  '--sign',
+  help='Turn on pgp signing of the rpm',
+  dest='app_sign',
+  action='store'
+)
+args = parser.parse_args()
 
 ###
 # For the record this is terrible...
@@ -37,6 +50,8 @@ with open(config, 'rb') as fin:
 # turn the toml config values into strings
 conf_source_url           = str(config_obj["source"]["url"])
 conf_source_chk_sum       = str(config_obj["source"]["chk_sum"])
+conf_package_project      = str(config_obj["package"]["project"])
+conf_package_proj_ver     = str(config_obj["package"]["proj_ver"])
 conf_package_name         = str(config_obj["package"]["name"])
 conf_package_version      = str(config_obj["package"]["version"])
 conf_package_destination  = str(config_obj["package"]["destination"])
@@ -154,13 +169,21 @@ def build_rpm(build_dir):
     'dir',
     '-t',
     'rpm',
-    '--name', conf_package_name,
+    '--rpm-rpmbuild-define',
+    '--rpm-sign',
+    '--name', conf_package_project+"-"+conf_package_name+"_"+conf_package_proj_ver,
     '-v', conf_package_version,
     '--prefix', conf_package_destination,
-    build_dir]
+    '.']
   ]
 
   os.chdir(c_path)
+  if args.app_sign:
+    logger.info("signing the package with gpg keys")
+  else:
+    logger.info("popping off the signature bits no gpg signing needed")
+    cmds[0].pop(5)
+    cmds[0].pop(5)
   for cmd in cmds:
     logger.info(cmd)
     logger.info(subprocess.check_output(cmd))
@@ -180,7 +203,7 @@ def cleanup_after():
   if not os.path.isdir(rpm_dir):
     logger.info(os.makedirs(rpm_dir))
 
-  rpm_file    = conf_package_name+"-"+conf_package_version+'-1.x86_64.rpm'
+  rpm_file    = conf_package_project+"-"+conf_package_name+"_"+conf_package_proj_ver+"-"+conf_package_version+'-1.x86_64.rpm'
   source_path = os.getcwd()+"/"+rpm_file
   destination = rpm_dir+rpm_file
   src_dir     = os.getcwd()+"/SRC"
