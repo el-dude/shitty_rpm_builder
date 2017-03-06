@@ -13,8 +13,10 @@ title = "Shitty RPM Builder Config"
   chk_sum = "" # The checksum for the source code your downloading
 
 [package]
-  name = "" # name of the software you're packaging
+  project = ""   # Project, Company, etc... to prepend to the name of the final RPM to not conflict with actual upstream or default RPM's
+  proj_ver = ""    # the project version to differentiate multiple versions of the package to be installed at the same time.
+  name = ""     # name of the software you're packaging
   version = "" # Version number of package
   destination = "/opt/" # the destination path that the bianaries will be installed
   summary = "" # The summary of the software package
-  license = "GPL" # the Software license. exp. GPL,MIT,BSD,etc...
+  license = "GPL"   # the Software license. exp. GPL,MIT,BSD,etc...
