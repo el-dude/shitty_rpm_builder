@@ -9,14 +9,14 @@
 title = "Shitty RPM Builder Config"
 
 [source]
-  url = "" # The source code to download
-  chk_sum = "" # The checksum for the source code your downloading
+  url = "http://s3.amazonaws.com/phusion-passenger/releases/passenger-5.1.2.tar.gz" # The source code to download
+  chk_sum = "88a77c749857a8538ea268f793d2708fa29b8891d2c3197577155f81cb66aa04919c25e713d4f00692051ad385eebaa94729cd30baa68edcf3d17c23bae0acdd" # The checksum for the source code your downloading
 
 [package]
-  project = ""   # Project, Company, etc... to prepend to the name of the final RPM to not conflict with actual upstream or default RPM's
-  proj_ver = ""    # the project version to differentiate multiple versions of the package to be installed at the same time.
-  name = ""     # name of the software you're packaging
+  project = "plm"   # Project, Company, etc... to prepend to the name of the final RPM to not conflict with actual upstream or default RPM's
+  proj_ver = "2_3"    # the project version to differentiate multiple versions of the package to be installed at the same time.
+  name = "passenger"     # name of the software you're packaging
   version = "" # Version number of package
-  destination = "/opt/" # the destination path that the bianaries will be installed
-  summary = "" # The summary of the software package
+  destination = "/opt/passenger" # the destination path that the bianaries will be installed
+  summary = "Passenger Web App Server Launch, operate, optimize and protect web apps, microservices & APIs with a rock-solid, feature-rich web app server that just works" # The summary of the software package
   license = "GPL"   # the Software license. exp. GPL,MIT,BSD,etc...
