@@ -1,6 +1,6 @@
 # shitty_rpm_builder #
 
-shitty_rpm_builder is used to create a rpm of source code tarbals.
+shitty_rpm_builder is used to create a rpm of source code tarballs.
 
 Downloads tarbals from source url and checks it's sha512 checksum. It then unpacks the tarball. it will then run `./configure` `make` `make install` into a build directory. it will then use FPM to create an RPM of the build directory for you. 
 
